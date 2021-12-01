@@ -4,14 +4,14 @@ dayNum=$(date +'%-d')
 dayNumPadded=$(date +'%0d')
 
 packageName="day$dayNumPadded"
-filePathName="./$packageName/Day$dayNumPadded"
+filePathName="src/$packageName/Day$dayNumPadded"
 mainFile="$filePathName.kt"
 
 # Make package
-mkdir "./$packageName"
+mkdir "src/$packageName"
 
 # Copy template file and create input files
-cp "./template/Day.tmp" $mainFile
+cp "template/Day.tmp" $mainFile
 touch "$filePathName.txt"
 touch "${filePathName}_test.txt"
 

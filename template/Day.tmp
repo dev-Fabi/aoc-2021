@@ -15,8 +15,8 @@ fun main() {
 
     // Test if implementation meets criteria from the description
     val testInput = utils.readLines("test")
-    check(part1(testInput) == 1)
-    //check(part2(testInput) == 1)
+    check(part1(testInput) == 0)
+    //check(part2(testInput) == 0)
 
     // Solve puzzle and print result
     val input = utils.readLines()
