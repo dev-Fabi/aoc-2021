@@ -6,26 +6,28 @@ import asInt
 fun main() {
     val utils = Utils(1)
 
-    fun part1(input: List<String>): Int {
-        return input.asInt()
-            .zipWithNext()
-            .count { it.second > it.first }
+    /**
+     * Counts how many times the following number in the list is bigger than the previous one
+     */
+    fun List<Int>.countConsecutiveIncreases() = zipWithNext().count { (prev, next) -> next > prev }
+
+    // Count how many times the consecutive number increases
+    fun part1(input: List<Int>): Int {
+        return input.countConsecutiveIncreases()
     }
 
-    fun part2(input: List<String>): Int {
-        return input.asInt()
-            .windowed(3)
-            .map { it.sum() }
-            .zipWithNext()
-            .count { it.second > it.first }
+    // Count how many times the sum of a sliding window of 3 numbers increases
+    fun part2(input: List<Int>): Int {
+        return input.windowed(3) { it.sum() }.countConsecutiveIncreases()
     }
 
-    // test if implementation meets criteria from the description, like:
-    val testInput = utils.readLines("test")
+    // Test if implementation meets criteria from the description
+    val testInput = utils.readLines("test").asInt()
     check(part1(testInput) == 7)
     check(part2(testInput) == 5)
 
-    val input = utils.readLines()
+    // Solve puzzle and print result
+    val input = utils.readLines().asInt()
     println("Solution day ${utils.day}:")
     println("\tPart 1: " + part1(input))
     println("\tPart 2: " + part2(input))
