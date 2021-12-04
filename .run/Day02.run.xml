@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
-    <configuration default="false" name="Day03Kt" type="JetRunConfigurationType" nameIsGenerated="true">
-        <option name="MAIN_CLASS_NAME" value="day03.Day03Kt"/>
+    <configuration default="false" name="Day02" type="JetRunConfigurationType">
+        <option name="MAIN_CLASS_NAME" value="day02.Day02Kt"/>
         <module name="aoc-2021.main"/>
         <shortenClasspath name="NONE"/>
         <method v="2">
