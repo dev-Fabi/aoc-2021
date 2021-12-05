@@ -47,7 +47,8 @@ fun main() {
         return numbers to boards
     }
 
-    fun part1(numbers: List<Int>, boards: List<Board>): Int {
+    fun part1(input: String): Int {
+        val (numbers, boards) = createGame(input)
         var winner: Board? = null
         val numbersIterator = numbers.iterator()
         var num: Int? = null
@@ -66,7 +67,8 @@ fun main() {
         return winner.sumUnchecked() * num
     }
 
-    fun part2(numbers: List<Int>, boards: List<Board>): Int {
+    fun part2(input: String): Int {
+        val (numbers, boards) = createGame(input)
         var lastWinner: Board? = null
         var winnerNumber: Int? = null
 
@@ -88,13 +90,13 @@ fun main() {
     }
 
     // Test if implementation meets criteria from the description
-    val (testNumbers, testBoards) = createGame(utils.readFile("test"))
-    check(part1(testNumbers, testBoards) == 4512)
-    check(part2(testNumbers, testBoards) == 1924)
+    val testInput = utils.readFile("test")
+    check(part1(testInput) == 4512)
+    check(part2(testInput) == 1924)
 
     // Solve puzzle and print result
-    val (numbers, boards) = createGame(utils.readFile())
+    val input = utils.readFile()
     println("Solution day ${utils.day}:")
-    println("\tPart 1: " + part1(numbers, boards))
-    println("\tPart 2: " + part2(numbers, boards))
+    println("\tPart 1: " + part1(input))
+    println("\tPart 2: " + part2(input))
 }
