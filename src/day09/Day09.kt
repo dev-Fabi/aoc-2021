@@ -44,25 +44,26 @@ fun main() {
     fun part2(heightMap: List<List<Int>>): Int {
         val maxX = heightMap.size - 1
         val maxY = heightMap.first().size - 1
+        val visited = Array(heightMap.size) { Array(heightMap.first().size) { false } }
 
-        fun getBasinSize(point: Pair<Int, Int>, visited: Array<Array<Boolean>>): Int {
+        fun getBasinSize(point: Pair<Int, Int>): Int {
             val (x, y) = point
             val value = heightMap[x][y]
 
             val higherAdjacents = point.getAdjacents(maxX, maxY)
-                .filter { (aX, aY) -> heightMap[aX][aY].let { it != 9 && it > value } && !visited[aX][aY] }
+                // Get Adjacents that are higher (flow to this point) and were not arleady counted (visited)
+                .filter { (aX, aY) -> !visited[aX][aY] && heightMap[aX][aY].let { it != 9 && it > value } }
                 .onEach { (aX, aY) -> visited[aX][aY] = true }
 
             return higherAdjacents.fold(higherAdjacents.size) { count, adj ->
-                count + getBasinSize(adj, visited)
+                count + getBasinSize(adj)
             }
         }
 
         val lowPoints = heightMap.getLowestPoints()
         val basins = lowPoints.map {
-            val visited = Array(heightMap.size) { Array(heightMap.first().size) { false } }
             visited[it.first][it.second] = true
-            getBasinSize(it, visited) + 1 // Add low point itself
+            getBasinSize(it) + 1 // Add low point itself
         }
 
         return basins.sorted().takeLast(3).reduce { acc, a -> acc * a }
