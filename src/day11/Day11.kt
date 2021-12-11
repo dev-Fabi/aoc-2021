@@ -1,18 +1,11 @@
 package day11
 
 import Utils
+import forEach2D
 import kotlin.math.max
 import kotlin.math.min
 
-fun <T> List<List<T>>.forEach2D(action: (index: Pair<Int, Int>, element: T) -> Unit) {
-    this.forEachIndexed { rowIndex, row ->
-        row.forEachIndexed { columnIndex, element ->
-            action(rowIndex to columnIndex, element)
-        }
-    }
-}
-
-class DumboOctopus(initialEnergyLevel: Int) {
+private class DumboOctopus(initialEnergyLevel: Int) {
     private var flashed = false
     private val adjacents = mutableSetOf<DumboOctopus>()
     var flashCount = 0

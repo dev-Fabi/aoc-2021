@@ -2,7 +2,7 @@ package day02
 
 import Utils
 
-sealed class Command(val amount: Int) {
+private sealed class Command(val amount: Int) {
     class Forward(amount: Int) : Command(amount);
     class Down(amount: Int) : Command(amount);
     class Up(amount: Int) : Command(amount);

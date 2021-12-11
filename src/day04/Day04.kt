@@ -3,8 +3,9 @@ package day04
 import Utils
 import asInt
 
-data class Field(val value: Int, var marked: Boolean = false)
-class Board(init: List<String>) {
+private data class Field(val value: Int, var marked: Boolean = false)
+
+private class Board(init: List<String>) {
     private var size: Int
     private val rows: Array<Array<Field>>
     private var markedRowCount: Array<Int>

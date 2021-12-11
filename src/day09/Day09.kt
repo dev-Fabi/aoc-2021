@@ -1,6 +1,7 @@
 package day09
 
 import Utils
+import forEach2D
 
 fun main() {
     val utils = Utils(9)
@@ -24,15 +25,13 @@ fun main() {
 
     fun List<List<Int>>.getLowestPoints(): List<Pair<Int, Int>> {
         val lowPoints = mutableListOf<Pair<Int, Int>>()
-        for (x in this.indices) {
-            for (y in this.first().indices) {
-                val current = this[x][y]
 
-                if (this.getAdjacents(x, y).all { current < this[it.first][it.second] }) {
-                    lowPoints.add(x to y)
-                }
+        this.forEach2D { (x, y), point ->
+            if (this.getAdjacents(x, y).all { point < this[it.first][it.second] }) {
+                lowPoints.add(x to y)
             }
         }
+
         return lowPoints
     }
 

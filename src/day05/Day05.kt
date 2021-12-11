@@ -1,6 +1,7 @@
 package day05
 
 import Utils
+import toward
 
 private data class Coordinate(val x: Int, val y: Int) {
     companion object {
@@ -12,10 +13,6 @@ private data class Line(val start: Coordinate, val end: Coordinate)
 
 private fun String.toCoordinates() = split(",").let { (x, y) -> Coordinate(x.toInt(), y.toInt()) }
 private fun MutableMap<String, Int>.increase(key: String) = set(key, get(key)?.plus(1) ?: 1)
-private infix fun Int.toward(to: Int): IntProgression {
-    val step = if (this > to) -1 else 1
-    return IntProgression.fromClosedRange(this, to, step)
-}
 
 private fun List<Line>.calculateOverlapping(): Int {
     val map = mutableMapOf<String, Int>()
