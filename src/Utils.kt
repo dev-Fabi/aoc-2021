@@ -54,3 +54,9 @@ fun <T> List<List<T>>.forEach2D(action: (index: Pair<Int, Int>, element: T) -> U
         }
     }
 }
+
+/**
+ * Increases the value of the key in a map
+ */
+fun <K> MutableMap<K, Int>.increase(key: K, by: Int = 1) = set(key, getOrDefault(key, 0).plus(by))
+fun <K> MutableMap<K, Long>.increase(key: K, by: Long = 1) = set(key, getOrDefault(key, 0).plus(by))
